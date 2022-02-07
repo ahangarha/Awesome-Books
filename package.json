@@ -4,6 +4,7 @@
   "description": "book collection management",
   "main": "index.js",
   "scripts": {
+    "linter": "npx eslint . && npx stylelint \"**/*.{css,scss}\" && npx hint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
