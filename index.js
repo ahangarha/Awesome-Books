@@ -3,8 +3,31 @@ const addBookForm = document.getElementById('addBookForm');
 
 let books = [];
 
+function isStorageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function updateStorage() {
+  if (isStorageAvailable('localStorage')) {
+    const storage = window.localStorage;
+    storage.setItem(
+      'books', JSON.stringify(books),
+    );
+  }
+}
+
 function removeBook(id) {
   books = books.filter((book) => book.id !== id);
+  updateStorage();
 }
 
 function updateEventListeners(element = document) {
@@ -34,8 +57,6 @@ function addBookToPage(data) {
   updateEventListeners(bookListWrapper);
 }
 
-books.forEach((book) => addBookToPage(book));
-
 function addBookToCollection(data) {
   const { id, title, author } = data;
   books.push({
@@ -43,6 +64,8 @@ function addBookToCollection(data) {
     title,
     author,
   });
+
+  updateStorage();
 
   // add to the page
   addBookToPage(data);
@@ -64,3 +87,12 @@ addBookForm.addEventListener('submit', (event) => {
   addBookForm.title.value = '';
   addBookForm.author.value = '';
 });
+
+if (isStorageAvailable('localStorage')) {
+  const localData = window.localStorage.getItem('books');
+  if (localData) {
+    books = JSON.parse(localData);
+  }
+}
+
+books.forEach((book) => addBookToPage(book));
