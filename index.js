@@ -5,14 +5,18 @@ class BookCollection {
   constructor(bookContainer) {
     this.books = [];
     this.bookContainer = bookContainer;
+    this.isStorageAvailable = false;
+    this.checkStorageAvailable('localStorage');
+
     // get data from localStorage if exist!
     this.initialDataFetchFromLocalStorage();
+
     // add them to the page
     this.books.forEach((book) => this.addBookToPage(book));
   }
 
   initialDataFetchFromLocalStorage() {
-    if (this.isStorageAvailable('localStorage')) {
+    if (this.isStorageAvailable) {
       const localData = window.localStorage.getItem('books');
       if (localData) {
         this.books = JSON.parse(localData);
@@ -20,16 +24,16 @@ class BookCollection {
     }
   }
 
-  isStorageAvailable(type) {
+  checkStorageAvailable(type) {
     let storage;
     try {
       storage = window[type];
       const x = '__storage_test__';
       storage.setItem(x, x);
       storage.removeItem(x);
-      return true;
+      this.isStorageAvailable = true;
     } catch (e) {
-      return false;
+      this.isStorageAvailable = false;
     }
   }
 
@@ -81,11 +85,9 @@ class BookCollection {
   }
 
   updateStorage() {
-    if (this.isStorageAvailable('localStorage')) {
+    if (this.isStorageAvailable) {
       const storage = window.localStorage;
-      storage.setItem(
-        'books', JSON.stringify(this.books),
-      );
+      storage.setItem('books', JSON.stringify(this.books));
     }
   }
 }
