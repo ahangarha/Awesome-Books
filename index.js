@@ -43,7 +43,7 @@ class BookCollection {
     this.bookContainer.innerHTML += `
     <li id="${id}">
       <h3>${title}</h3>
-      <p>${author}</p>
+      <p><em>By: ${author}</em></p>
       <button class="removeBookBtn">Remove</button>
     </li>
     `;
