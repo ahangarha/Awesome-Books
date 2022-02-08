@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Awesome Books</title>
-</head>
-<body>
-  <header>
-    <h1>Awesome Books</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Awesome Books</title>
+  </head>
+  <body>
+    <header>
+      <h1>Awesome Books</h1>
+    </header>
 
-  <main>
-    <section>
-      <h2>List of books:</h2>
-      <ul id="bookList"></ul>
-    </section>
+    <main>
+      <section class="book-container">
+        <h2>List of books:</h2>
+        <ul id="bookList"></ul>
+      </section>
 
-    <section>
-      <h2>Add a new book:</h2>
       <form id="addBookForm">
-        <input type="text" name="title">
-        <input type="text" name="author">
-        <input type="submit" value="Add">
+        <h2>Add a new book:</h2>
+        <input type="text" name="title" />
+        <input type="text" name="author" />
+        <input type="submit" value="Add New Book" />
       </form>
-    </section>
-  </main>
+    </main>
 
-  <footer>
-    This is a <a href="https://github.com/ahangarha/Awesome-Books">FLOSS project</a> under AGPL license.
-  </footer>
+    <footer>
+      This is a
+      <a href="https://github.com/ahangarha/Awesome-Books">FLOSS project</a>
+      under AGPL license.
+    </footer>
 
-  <script src="./index.js"></script>
-</body>
+    <script src="./index.js"></script>
+  </body>
 </html>

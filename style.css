@@ -1,3 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+header {
+  padding: 1rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 500px;
+  padding: 0.5rem;
+}
+
+.book-container h2 {
+  text-align: center;
+  padding: 1rem;
+}
+
+#bookList li {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1rem;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#bookList li h3 {
+  flex-grow: 0;
+}
+
+#bookList li button {
+  flex-grow: 0;
+}
+
+#bookList li p {
+  flex-grow: 1;
+}
+
+#addBookForm {
+  margin: 3rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 2px solid black;
 }
