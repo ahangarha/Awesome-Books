@@ -1,75 +1,96 @@
 const bookListWrapper = document.getElementById('bookList');
 const addBookForm = document.getElementById('addBookForm');
 
-let books = [];
-
-function isStorageAvailable(type) {
-  let storage;
-  try {
-    storage = window[type];
-    const x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  } catch (e) {
-    return false;
+class BookCollection {
+  constructor(bookContainer) {
+    this.books = [];
+    this.bookContainer = bookContainer;
+    // get data from localStorage if exist!
+    this.initialDataFetchFromLocalStorage();
+    // add them to the page
+    this.books.forEach((book) => this.addBookToPage(book));
   }
-}
 
-function updateStorage() {
-  if (isStorageAvailable('localStorage')) {
-    const storage = window.localStorage;
-    storage.setItem(
-      'books', JSON.stringify(books),
-    );
+  initialDataFetchFromLocalStorage() {
+    if (this.isStorageAvailable('localStorage')) {
+      const localData = window.localStorage.getItem('books');
+      if (localData) {
+        this.books = JSON.parse(localData);
+      }
+    }
   }
-}
 
-function removeBook(id) {
-  books = books.filter((book) => book.id !== id);
-  updateStorage();
-}
+  isStorageAvailable(type) {
+    let storage;
+    try {
+      storage = window[type];
+      const x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 
-function updateEventListeners(element = document) {
-  const removeBookBtns = element.querySelectorAll('.removeBookBtn');
+  addBookToPage(data) {
+    const { id, title, author } = data;
 
-  removeBookBtns.forEach((removeBtn) => {
-    removeBtn.addEventListener('click', (event) => {
-      const { parentNode } = event.target;
-      removeBook(parentNode.id);
-      parentNode.remove();
+    this.bookContainer.innerHTML += `
+    <li id="${id}">
+      <h3>${title}</h3>
+      <p>${author}</p>
+      <button class="removeBookBtn">Remove</button>
+    </li>
+    `;
+
+    // update event listener
+    this.updateEventListeners(this.bookContainer);
+  }
+
+  addBookToCollection(data) {
+    const { id, title, author } = data;
+
+    this.books.push({
+      id,
+      title,
+      author,
     });
-  });
+
+    this.updateStorage();
+
+    // add to the page
+    this.addBookToPage(data);
+  }
+
+  updateEventListeners(element = document) {
+    const removeBookBtns = element.querySelectorAll('.removeBookBtn');
+
+    removeBookBtns.forEach((removeBtn) => {
+      removeBtn.addEventListener('click', (event) => {
+        const { parentNode } = event.target;
+        this.removeBook(parentNode.id);
+        parentNode.remove();
+      });
+    });
+  }
+
+  removeBook(id) {
+    this.books = this.books.filter((book) => book.id !== id);
+    this.updateStorage();
+  }
+
+  updateStorage() {
+    if (this.isStorageAvailable('localStorage')) {
+      const storage = window.localStorage;
+      storage.setItem(
+        'books', JSON.stringify(this.books),
+      );
+    }
+  }
 }
 
-function addBookToPage(data) {
-  const { id, title, author } = data;
-
-  bookListWrapper.innerHTML += `
-  <li id="${id}">
-    <h3>${title}</h3>
-    <p>${author}</p>
-    <button class="removeBookBtn">Remove</button>
-  </li>
-  `;
-
-  // update event listener
-  updateEventListeners(bookListWrapper);
-}
-
-function addBookToCollection(data) {
-  const { id, title, author } = data;
-  books.push({
-    id,
-    title,
-    author,
-  });
-
-  updateStorage();
-
-  // add to the page
-  addBookToPage(data);
-}
+const bookCollection = new BookCollection(bookListWrapper);
 
 addBookForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -78,7 +99,7 @@ addBookForm.addEventListener('submit', (event) => {
   const title = addBookForm.title.value.trim();
   const author = addBookForm.author.value.trim();
 
-  addBookToCollection({
+  bookCollection.addBookToCollection({
     id,
     title,
     author,
@@ -87,12 +108,3 @@ addBookForm.addEventListener('submit', (event) => {
   addBookForm.title.value = '';
   addBookForm.author.value = '';
 });
-
-if (isStorageAvailable('localStorage')) {
-  const localData = window.localStorage.getItem('books');
-  if (localData) {
-    books = JSON.parse(localData);
-  }
-}
-
-books.forEach((book) => addBookToPage(book));
