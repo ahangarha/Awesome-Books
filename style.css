@@ -77,6 +77,22 @@ body {
   border: 2px solid black;
 }
 
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+span {
+  display: block;
+}
+
+address {
+  display: inline;
+}
+
 footer {
   width: 700px;
   border: 2px solid black;
