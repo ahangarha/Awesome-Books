@@ -10,15 +10,22 @@
   <body>
     <header>
       <h1>Awesome Books</h1>
+      <nav>
+        <ul id="menu">
+          <li><a href="#">List</a></li>
+          <li><a href="#">Add new</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-      <section class="book-container">
+      <section class="book-container display-none">
         <h2>List of books:</h2>
         <ul id="bookList"></ul>
       </section>
 
-      <form id="addBookForm">
+      <form id="addBookForm" class="display-none">
         <h2>Add a new book:</h2>
         <input type="text" name="title" />
         <input type="text" name="author" />
