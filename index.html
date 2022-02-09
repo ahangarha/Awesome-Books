@@ -10,20 +10,46 @@
   <body>
     <header>
       <h1>Awesome Books</h1>
+      <nav>
+        <ul id="menu">
+          <li><a id="listMenuLink" href="#">List</a></li>
+          <li><a id="addMenuLink" href="#">Add new</a></li>
+          <li><a id="contactMenuLink" href="#">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-      <section class="book-container">
+      <section id="listSection" class="book-container">
         <h2>List of books:</h2>
         <ul id="bookList"></ul>
       </section>
 
-      <form id="addBookForm">
-        <h2>Add a new book:</h2>
-        <input type="text" name="title" />
-        <input type="text" name="author" />
-        <input type="submit" value="Add New Book" />
-      </form>
+      <section id="addSection" class="display-none">
+        <form id="addBookForm">
+          <h2>Add a new book:</h2>
+          <input type="text" name="title" />
+          <input type="text" name="author" />
+          <input type="submit" value="Add New Book" />
+        </form>
+      </section>
+
+      <section id="contactSection" class="contact display-none">
+        <h2>Contact information</h2>
+        <p>
+          Do have any question or you just want to say "Hello"?
+          <br>
+          You can reach out to us!
+        </p>
+        <ul>
+          <li>Our email: mail@mail.com</li>
+          <li>Our phone number: 0000111121</li>
+          <li>
+            Our address:
+            <address>Streetname 22,84503 city,country</address>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer>
