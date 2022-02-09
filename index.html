@@ -20,24 +20,26 @@
     </header>
 
     <main>
-      <section class="book-container display-none">
+      <section class="book-container">
         <h2>List of books:</h2>
         <ul id="bookList"></ul>
       </section>
 
-      <form id="addBookForm" class="display-none">
-        <h2>Add a new book:</h2>
-        <input type="text" name="title" />
-        <input type="text" name="author" />
-        <input type="submit" value="Add New Book" />
-      </form>
+      <section class="display-none">
+        <form id="addBookForm">
+          <h2>Add a new book:</h2>
+          <input type="text" name="title" />
+          <input type="text" name="author" />
+          <input type="submit" value="Add New Book" />
+        </form>
+      </section>
 
       <section class="contact display-none">
         <h2>Contact information</h2>
         <p>
-          Do have any question or you just want to say "Hello"?<span
-            >You can reach out to us!</span
-          >
+          Do have any question or you just want to say "Hello"?
+          <br>
+          You can reach out to us!
         </p>
         <ul>
           <li>Our email: mail@mail.com</li>

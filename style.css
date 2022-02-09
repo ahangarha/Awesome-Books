@@ -8,6 +8,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
 header {
   padding: 1rem;
   display: flex;
@@ -15,22 +24,20 @@ header {
   align-items: center;
   width: 700px;
   border: 2px solid black;
+  flex-grow: 0;
 }
 
 #menu {
   display: flex;
   gap: 1rem;
 }
+
 #menu li {
   list-style: none;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
+main {
+  flex-grow: 1;
 }
 
 .book-container {
@@ -64,7 +71,7 @@ body {
 }
 
 #bookList li p {
-  flex-grow: 1;
+  flex-grow: 1 !important;
 }
 
 #addBookForm {
@@ -85,10 +92,6 @@ body {
   gap: 2rem;
 }
 
-span {
-  display: block;
-}
-
 address {
   display: inline;
 }
@@ -97,4 +100,9 @@ footer {
   width: 700px;
   border: 2px solid black;
   padding: 1rem;
+  flex-grow: 0;
+}
+
+.display-none {
+  display: none;
 }
