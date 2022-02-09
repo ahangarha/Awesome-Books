@@ -12,20 +12,20 @@
       <h1>Awesome Books</h1>
       <nav>
         <ul id="menu">
-          <li><a href="#">List</a></li>
-          <li><a href="#">Add new</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a id="listMenuLink" href="#">List</a></li>
+          <li><a id="addMenuLink" href="#">Add new</a></li>
+          <li><a id="contactMenuLink" href="#">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section class="book-container">
+      <section id="listSection" class="book-container">
         <h2>List of books:</h2>
         <ul id="bookList"></ul>
       </section>
 
-      <section class="display-none">
+      <section id="addSection" class="display-none">
         <form id="addBookForm">
           <h2>Add a new book:</h2>
           <input type="text" name="title" />
@@ -34,7 +34,7 @@
         </form>
       </section>
 
-      <section class="contact display-none">
+      <section id="contactSection" class="contact display-none">
         <h2>Contact information</h2>
         <p>
           Do have any question or you just want to say "Hello"?
